@@ -55,7 +55,7 @@ public class Table {
     public static int getMax(byte b, byte[] bytes){
         ArrayList<Node> nodes = new ArrayList<>();
         for (int j = 0; j < 256; j++) {
-            Node node = new Node(sxp((byte)j,b,bytes),j);
+            Node node = new Node(sxp((byte)j, b, bytes),j);
             nodes.add(node);
         }
         nodes.sort(Node::compare);
@@ -81,5 +81,12 @@ public class Table {
             System.arraycopy(bytes,bytes.length-60001,result,60000,30000);
             return result;
         }
+    }
+    public static byte[] defaultTable(){
+        byte[] table = new byte[256];
+        for (int i = 0; i < 256; i++) {
+            table[i] = (byte)i;
+        }
+        return table;
     }
 }

@@ -19,8 +19,21 @@ public class Encode {
         var3.read(var4);
         var3.close();
         System.out.println("read file oke " + var1);
-        Row.table = Table.creatTable(var4);
-        System.out.println("complete create chain");
+        boolean heuristic = true;
+        for(String s: var0){
+            if (s.equals("-c")) {
+                heuristic = false;
+                break;
+            }
+        }
+        if(heuristic) {
+            Row.table = Table.creatTable(var4);
+            System.out.println("complete create chain");
+        }
+        else {
+            Row.table = Table.defaultTable();
+            System.out.println("not using heuristic");
+        }
         byte[] var5 = BurrowWheeler.longEncode(var4);
         byte[] var6 = RLEImprove.encode(var5);
         Row row = new Row(Row.table);
